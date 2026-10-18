@@ -28,6 +28,28 @@ module mux_4_1
   // Task:
   // Implement mux_4_1 with 4-bit data
   // using two instances of mux_4_1_width_2 with 2-bit data
+	
+	wire [1:0] y1, y2;
+	mux_4_1_width_2 m1 (
+		.d0(d0[1:0]),
+		.d1(d1[1:0]),
+		.d2(d2[1:0]),
+		.d3(d3[1:0]),
+		.sel(sel),
+		.y(y1)
+		);
+	mux_4_1_width_2 m2 (
+		.d0(d0[3:2]),
+		.d1(d1[3:2]),
+		.d2(d2[3:2]),
+		.d3(d3[3:2]),
+		.sel(sel),
+		.y(y2)
+		);
 
+		//assign y [1:0] = y1;
+		//assign y [3:2] = y2;
+		
+		assign y = {y2, y1};
 
 endmodule
